@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://android.com"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Elevated Dark Card -->
+    <path
+        android:fillColor="#171523"
+        android:pathData="M32,24 L76,24 Q84,24 84,32 L84,76 Q84,84 76,84 L32,84 Q24,84 24,76 L24,32 Q24,24 32,24 Z" />
+
+    <!-- Glowing Purple Border -->
+    <path
+        android:strokeColor="#9333EA"
+        android:strokeWidth="2.5"
+        android:pathData="M32,24 L76,24 Q84,24 84,32 L84,76 Q84,84 76,84 L32,84 Q24,84 24,76 L24,32 Q24,24 32,24 Z" />
+
+    <!-- Top Left: Plus (+) -->
+    <path
+        android:strokeColor="#C084FC"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M39,34 L39,46 M33,40 L45,40" />
+
+    <!-- Top Right: Minus (-) -->
+    <path
+        android:strokeColor="#C084FC"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M63,40 L75,40" />
+
+    <!-- Bottom Left: Multiply (x) -->
+    <path
+        android:strokeColor="#F472B6"
+        android:strokeWidth="3.5"
+        android:strokeLineCap="round"
+        android:pathData="M34,63 L44,73 M44,63 L34,73" />
+
+    <!-- Bottom Right: Glowing Purple Pill (=) -->
+    <path
+        android:fillColor="#9333EA"
+        android:pathData="M60,58 L78,58 Q81,58 81,61 L81,75 Q81,78 78,78 L60,78 Q57,78 57,75 L57,61 Q57,58 60,58 Z" />
+    <path
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:strokeLineCap="round"
+        android:pathData="M63,65 L75,65 M63,71 L75,71" />
+</vector>
