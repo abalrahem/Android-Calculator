@@ -108,11 +108,12 @@ Java_com_obsidian_calculator_MainActivity_pressButton(JNIEnv* env, jobject, jstr
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_obsidian_calculator_MainActivity_getDisplay(JNIEnv* env, jobject) {
+Java_com_obsidian_calculator_MainActivity_fetchDisplay(JNIEnv* env, jobject) {
     return env->NewStringUTF(displayStr.c_str());
 }
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_obsidian_calculator_MainActivity_getExpr(JNIEnv* env, jobject) {
+Java_com_obsidian_calculator_MainActivity_fetchExpr(JNIEnv* env, jobject) {
     return env->NewStringUTF(exprStr.c_str());
 }
+
