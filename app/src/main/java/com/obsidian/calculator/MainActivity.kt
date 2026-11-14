@@ -1,11 +1,11 @@
 package com.obsidian.calculator
 
 import android.app.Activity
+import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.Typeface
 import android.graphics.drawable.GradientDrawable
 import android.graphics.drawable.RippleDrawable
-import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.Button
 import android.widget.GridLayout
@@ -20,8 +20,8 @@ class MainActivity : Activity() {
     }
 
     external fun pressButton(code: String)
-    external fun getDisplay(): String
-    external fun getExpr(): String
+    external fun fetchDisplay(): String
+    external fun fetchExpr(): String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,43 +42,46 @@ class MainActivity : Activity() {
         )
 
         for ((label, code) in buttons) {
-            val btn = Button(this).apply {
-                text = label
-                textSize = 22f
-                typeface = Typeface.DEFAULT_BOLD
-                isAllCaps = false
+            val btn = Button(this)
+            btn.text = label
+            btn.textSize = 22f
+            btn.typeface = Typeface.DEFAULT_BOLD
+            btn.isAllCaps = false
 
-                val (bgHex, txtHex, borderHex, rippleHex) = when (code) {
-                    "=" -> listOf("#9333EA", "#FFFFFF", "#C084FC", "#EBC3FF")
-                    "C" -> listOf("#3E1A2C", "#F472B6", "#783054", "#F472B6")
-                    "/", "x", "-", "+", "%", "BACK" -> listOf("#2D1E44", "#C084FC", "#583884", "#C084FC")
-                    else -> listOf("#1D1B2B", "#F8F7FF", "#302C48", "#8273C3")
-                }
-
-                setTextColor(Color.parseColor(txtHex))
-
-                val shape = GradientDrawable().apply {
-                    cornerRadius = 36f
-                    setColor(Color.parseColor(bgHex))
-                    setStroke(3, Color.parseColor(borderHex))
-                }
-                background = RippleDrawable(ColorStateList.valueOf(Color.parseColor(rippleHex)), shape, null)
-
-                val params = GridLayout.LayoutParams().apply {
-                    width = 0
-                    height = 0
-                    columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
-                    setMargins(12, 12, 12, 12)
-                }
-                layoutParams = params
-
-                setOnClickListener {
-                    pressButton(code)
-                    tvDisplay.text = this@MainActivity.getDisplay()
-                    tvExpr.text = this@MainActivity.getExpr()
-                }
+            val colors = when (code) {
+                "=" -> listOf("#9333EA", "#FFFFFF", "#C084FC", "#EBC3FF")
+                "C" -> listOf("#3E1A2C", "#F472B6", "#783054", "#F472B6")
+                "/", "x", "-", "+", "%", "BACK" -> listOf("#2D1E44", "#C084FC", "#583884", "#C084FC")
+                else -> listOf("#1D1B2B", "#F8F7FF", "#302C48", "#8273C3")
             }
+
+            btn.setTextColor(Color.parseColor(colors[1]))
+
+            val shape = GradientDrawable()
+            shape.cornerRadius = 36f
+            shape.setColor(Color.parseColor(colors[0]))
+            shape.setStroke(3, Color.parseColor(colors[2]))
+
+            btn.background = RippleDrawable(
+                ColorStateList.valueOf(Color.parseColor(colors[3])),
+                shape,
+                null
+            )
+
+            val params = GridLayout.LayoutParams()
+            params.width = 0
+            params.height = 0
+            params.columnSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            params.rowSpec = GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            params.setMargins(12, 12, 12, 12)
+            btn.layoutParams = params
+
+            btn.setOnClickListener {
+                pressButton(code)
+                tvDisplay.text = fetchDisplay()
+                tvExpr.text = fetchExpr()
+            }
+
             grid.addView(btn)
         }
     }
