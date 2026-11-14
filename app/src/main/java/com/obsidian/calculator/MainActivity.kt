@@ -75,8 +75,8 @@ class MainActivity : Activity() {
 
                 setOnClickListener {
                     pressButton(code)
-                    tvDisplay.text = getDisplay()
-                    tvExpr.text = getExpr()
+                    tvDisplay.text = this@MainActivity.getDisplay()
+                    tvExpr.text = this@MainActivity.getExpr()
                 }
             }
             grid.addView(btn)
